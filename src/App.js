@@ -2,32 +2,23 @@ import logo from "./logo.svg";
 import "./App.css";
 import { useEffect, useState } from "react";
 
-function App() {
-  const [count, setCount] = useState(0);
-  const [on, setOn] = useState(true);
 
-  function handleIncrease() {
-    setCount((count) => count + 1);
+function App() {
+  const [on,setOn] = useState(true)
+
+  const handleClick = (e)=>{
+    setOn(on => !on)
   }
 
-  if (on) return <Counter count={count} handleIncrease={handleIncrease} />;
-  else return null
-}
+  const handleUI = [
+    on ? 'button_on' : 'button_off'
+  ].toString()
 
-function Counter({count,handleIncrease}) {
-  useEffect(
-    () => {
-      console.log("Side Effect")
-
-      return() =>{
-        console.log("Clean Up")
-      }
-    }
-  )
   return(
-    <div>
-      <p>{count}</p>
-      <button onClick={handleIncrease}>Increase</button>
+    <div >
+      <button onClick={handleClick} className={handleUI} >
+      {on?"ON":"OFF"}
+    </button>
     </div>
   )
 }
