@@ -1,7 +1,7 @@
-import logo from "./logo.svg";
 import "./App.css";
-import { useEffect, useState } from "react";
-
+import {  useState } from "react";
+import styled, { css } from 'styled-components'
+// import StyledButton from "./style.js";
 
 function App() {
   const [on,setOn] = useState(true)
@@ -10,14 +10,27 @@ function App() {
     setOn(on => !on)
   }
 
-  var handleUI = require('classnames');
-  handleUI=handleUI('style',(on)?'button_on':'button_off')
+  // var handleUI = require('classnames');
+  // handleUI=handleUI('style',(on)?'button_on':'button_off')
 
+  const StyledButton = styled.button`
+    border-radius: 3px;
+    border: 2px solid palevioletred;
+    color: palevioletred;
+    margin: 0.5em 1em;
+    padding: 0.25em 1em;
+    background-color: ${props => props.primary === true?"green":"red"}
+  `;
+  const BigButton = styled(StyledButton)`
+    width: 300px;
+    height: 200px;
+    background-color: !(background-color)
+  `
+  
   return(
     <div >
-      <button onClick={handleClick} className={handleUI} >
-      {on?"ON":"OFF"}
-    </button>
+      <StyledButton primary = {on} onClick={handleClick}>This is button</StyledButton>
+      <BigButton primary = {on} onClick={handleClick}>BigButton</BigButton>
     </div>
   )
 }
