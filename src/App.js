@@ -10,9 +10,8 @@ function App() {
     setOn(on => !on)
   }
 
-  const handleUI = [
-    on ? 'button_on' : 'button_off'
-  ].toString()
+  var handleUI = require('classnames');
+  handleUI=handleUI('style',(on)?'button_on':'button_off')
 
   return(
     <div >
