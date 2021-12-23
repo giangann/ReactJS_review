@@ -1,38 +1,29 @@
 import "./App.css";
-import {  useState } from "react";
-import styled, { css } from 'styled-components'
-// import StyledButton from "./style.js";
+import { useState } from "react";
+import Button from "react-bootstrap/Button";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Navbar } from "react-bootstrap";
+import { DatePicker, Space } from "antd";
+import "antd/dist/antd.css"; // or 'antd/dist/antd.less'
 
 function App() {
-  const [on,setOn] = useState(true)
+  const { RangePicker } = DatePicker;
 
-  const handleClick = (e)=>{
-    setOn(on => !on)
+  function onChange(date, dateString) {
+    console.log(date, dateString);
   }
 
-  // var handleUI = require('classnames');
-  // handleUI=handleUI('style',(on)?'button_on':'button_off')
-
-  const StyledButton = styled.button`
-    border-radius: 3px;
-    border: 2px solid palevioletred;
-    color: palevioletred;
-    margin: 0.5em 1em;
-    padding: 0.25em 1em;
-    background-color: ${props => props.primary === true?"green":"red"}
-  `;
-  const BigButton = styled(StyledButton)`
-    width: 300px;
-    height: 200px;
-    background-color: !(background-color)
-  `
-  
-  return(
-    <div >
-      <StyledButton primary = {on} onClick={handleClick}>This is button</StyledButton>
-      <BigButton primary = {on} onClick={handleClick}>BigButton</BigButton>
+  return (
+    <div>
+      <Space direction="vertical">
+        <DatePicker onChange={onChange} />
+        <DatePicker onChange={onChange} picker="week" />
+        <DatePicker onChange={onChange} picker="month" />
+        <DatePicker onChange={onChange} picker="quarter" />
+        <DatePicker onChange={onChange} picker="year" />
+      </Space>
     </div>
-  )
+  );
 }
 
 export default App;
