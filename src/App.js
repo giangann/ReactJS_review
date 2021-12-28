@@ -1,5 +1,5 @@
 import "./App.css";
-import { useState } from "react";
+import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Navbar } from "react-bootstrap";
@@ -8,9 +8,13 @@ import "antd/dist/antd.css"; // or 'antd/dist/antd.less'
 import _, { values } from "lodash";
 import Checkbox from "antd/lib/checkbox/Checkbox";
 import { v4 as uuidv4 } from "uuid";
-import TodoList from "./TodoList"
+import TodoList from "./TodoList";
+import context from "react-bootstrap/esm/AccordionContext";
+
+export const Title = React.createContext();
 
 function App() {
+  const title = "Todo App";
   const [todos, setTodos] = useState([
     {
       id: uuidv4(),
@@ -38,7 +42,7 @@ function App() {
     },
   ]);
   //handle when user tick the checkbox
-  
+
   const changeStatus = (id, values) => {
     const tempTodos = todos.map((todo) =>
       todo.id === id
@@ -60,19 +64,21 @@ function App() {
 
   return (
     <div>
-      <div>
-        <h1>Task Completed</h1>
-        {taskCompleted.map((item) => (
-          <TodoList key={item.id} item = {item} handleCheck = {changeStatus} />
-        ))}
-      </div>
+      <Title.Provider value={title}>
+        <div>
+          <h1>Task Completed</h1>
+          {taskCompleted.map((item) => (
+            <TodoList key={item.id} item={item} handleCheck={changeStatus} />
+          ))}
+        </div>
 
-      <div>
-        <h1>Task Not Completed</h1>
-        {taskNotCompleted.map((item) => (
-          <TodoList key={item.id} item = {item} handleCheck = {changeStatus} />
-        ))}
-      </div>
+        <div>
+          <h1>Task Not Completed</h1>
+          {taskNotCompleted.map((item) => (
+            <TodoList key={item.id} item={item} handleCheck={changeStatus} />
+          ))}
+        </div>
+      </Title.Provider>
     </div>
   );
 }
