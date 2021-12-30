@@ -1,9 +1,6 @@
-import { useSelector } from "react-redux";
 
 // reducer:
 export function Counter(state ={count:0, value: ''}, action) {
-  // const tempCount = useSelector(state => state.count)
-  // const value = useSelector(state => state.value)
   switch (action.type) {
     case "INCREMENT":
       const tempValue = action.payload.value

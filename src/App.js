@@ -1,6 +1,5 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Counter } from "./Redux/Reducer";
 import Store from './Redux/Store'
 import {Increment, Decrement, ChangeInputValue} from './Redux/ActionCreator'
 
